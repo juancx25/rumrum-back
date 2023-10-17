@@ -1,0 +1,12 @@
+#ifndef MOV_RECIBIDO
+#define MOV_RECIBIDO
+
+#include "../config/Movimientos.hpp"
+
+class MovimientoRecibido{
+    private:
+        TiposDeMovimiento tipoDeMovimiento;
+        
+};
+
+#endif

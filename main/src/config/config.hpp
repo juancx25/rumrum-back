@@ -9,4 +9,9 @@ class Config{
         static const uint8_t ENB = 4;
         static const uint8_t IN3 = 5;
         static const uint8_t IN4 = 16;
+
+        static const uint8_t LED_ADELANTE = 0;
+        static const uint8_t LED_ATRAS = 10;
+
+        static const uint8_t PIN_PARLANTE = 15;
 };

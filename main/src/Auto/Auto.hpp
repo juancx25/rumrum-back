@@ -3,9 +3,10 @@
 
 #include <cmath>
 #include "../Motor/Motor.hpp"
+#include "../LuzTestigo/LuzTestigo.hpp"
+#include "../Parlante/Parlante.hpp"
 #include "../config/config.hpp"
-#include "../config/MovimientosAutomaticos.hpp"
-#include <HardwareSerial.h>
+#include "../config/Acciones.hpp"
 
 class Auto {
     private:
@@ -13,6 +14,9 @@ class Auto {
         Motor* motorDerecho;
         Motor* motorIzquierdo;
         char palabraDisplay[4];
+        LuzTestigo* luzAdelante;
+        LuzTestigo* luzAtras;
+        Parlante* parlante;
         int16_t limitarRango(int16_t number);
 
     public:
@@ -20,7 +24,7 @@ class Auto {
         void actualizarEstados();
         void desplazar(int16_t posX, int16_t posY);
         void frenar();
-        void automatico(MovimientosAutomaticos movimiento);
+        void automatico(Acciones movimiento);
         void mostrarPalabra(char* palabra);
 };
 

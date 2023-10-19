@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
-#include "../config/MovimientosAutomaticos.hpp"
 
 class WebServer {
     private:

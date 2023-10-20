@@ -1,6 +1,9 @@
+#ifndef CONFIG
+#define CONFIG
+
 class Config{
     public:
-        static const uint8_t ledPin = 2;
+        static const uint8_t LED_PLACA = 2;
 
         static const uint8_t ENA = 14;
         static const uint8_t IN1 = 12;
@@ -15,3 +18,5 @@ class Config{
 
         static const uint8_t PIN_PARLANTE = 15;
 };
+
+#endif

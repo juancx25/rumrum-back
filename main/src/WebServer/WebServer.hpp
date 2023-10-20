@@ -4,15 +4,20 @@
 #include <stdint.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include "../LuzTestigo/LuzTestigo.hpp"
+#include "../config/config.hpp"
+#include "../config/Modos.hpp"
 
 class WebServer {
     private:
         static const uint8_t MAX_USUARIOS = 1;
-        AsyncWebSocket* webSocket;
-        uint32_t port;
+        uint32_t puerto;
+        LuzTestigo* luzPlaca;
     public:
-        AsyncWebServer* server; //should be private
-        WebServer(uint32_t puerto, std::function<void(AsyncWebSocket*, AsyncWebSocketClient*, AwsEventType, void*, uint8_t*, size_t)> accion);
+        AsyncWebServer* server;
+        AsyncWebSocket* webSocket;
+        WebServer(uint32_t puerto);
+        void actualizarEstados();
         void limpiarClientes();
 
 };

@@ -2,24 +2,37 @@
 #define PARLANTE
 
 #include <HardwareSerial.h>
+#include "../config/Modos.hpp"
 
 class Parlante{
     private:
         uint8_t PIN;
-        bool estado;
         uint16_t frecuencia;
+        Modos estado;
     public:
-        Parlante(uint8_t PIN, uint16_t frecuencia, bool estado = false){
+        Parlante(uint8_t PIN, uint16_t frecuencia, Modos estado = Modos::APAGADO){
             this->PIN = PIN;
             this->frecuencia = frecuencia;
             this->estado = estado;
             pinMode(this->PIN, OUTPUT);
         }
-        void establecerEncendido(bool estado){
+        void establecerEncendido(Modos estado){
             this->estado = estado;
         }
         bool estaEncendido(){
             return this->estado;
+        }
+        void aplicarEstado(){
+            switch (this->estado){
+                case Modos::APAGADO:
+                    digitalWrite(this->PIN, LOW);
+                    break;
+                case Modos::ENCENDIDO:
+                    digitalWrite(this->PIN, HIGH);
+                    break;
+                case Modos::TITILANDO:
+                    this->titilar(1000);
+            }
         }
         void titilar(uint16_t tiempo_ms){
             static unsigned long time = 0;

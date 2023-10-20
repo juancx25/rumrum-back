@@ -25,7 +25,9 @@ class Auto {
         void desplazar(int16_t posX, int16_t posY);
         void frenar();
         void automatico(Acciones movimiento);
-        void mostrarPalabra(char* palabra);
+        void establecerPalabra(char* palabra);
+        const char* getPalabra();
+        void mostrarPalabra();
 };
 
 #endif

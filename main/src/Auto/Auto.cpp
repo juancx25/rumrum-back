@@ -1,4 +1,5 @@
 #include "Auto.hpp"
+#include "../config/Modos.hpp"
 
 Auto::Auto(){
     this->motorIzquierdo = new Motor(Config::ENA, Config::IN1, Config::IN2);
@@ -16,24 +17,24 @@ void Auto::actualizarEstados(){
     this->motorIzquierdo->aplicarPotencia();
     this->luzAdelante->aplicarEstado();
     this->luzAtras->aplicarEstado();
-    this->parlante->titilar(1000);
+    this->parlante->aplicarEstado();
 }
 
 void Auto::desplazar(int16_t posX, int16_t posY){
     this->motorDerecho->potencia = limitarRango(posX+posY);
     this->motorIzquierdo->potencia = limitarRango(posY-posX);
     if (posY > 0){
-        this->luzAdelante->establecerEncendido(true);
-        this->luzAtras->establecerEncendido(false);
-        this->parlante->establecerEncendido(false);
+        this->luzAdelante->establecerEncendido(Modos::ENCENDIDO);
+        this->luzAtras->establecerEncendido(Modos::APAGADO);
+        this->parlante->establecerEncendido(Modos::APAGADO);
     } else if (posY < 0){
-        this->luzAdelante->establecerEncendido(false);
-        this->luzAtras->establecerEncendido(true);
-        this->parlante->establecerEncendido(true);
+        this->luzAdelante->establecerEncendido(Modos::APAGADO);
+        this->luzAtras->establecerEncendido(Modos::ENCENDIDO);
+        this->parlante->establecerEncendido(Modos::TITILANDO);
     } else {
-        this->luzAdelante->establecerEncendido(false);
-        this->luzAtras->establecerEncendido(false);
-        this->parlante->establecerEncendido(false);
+        this->luzAdelante->establecerEncendido(Modos::APAGADO);
+        this->luzAtras->establecerEncendido(Modos::APAGADO);
+        this->parlante->establecerEncendido(Modos::APAGADO);
     }
 }
 
@@ -58,8 +59,17 @@ void Auto::automatico(Acciones movimiento){
     }
 }
 
-void Auto::mostrarPalabra(char* palabra){
+void Auto::establecerPalabra(char* palabra){
     //TODO
+}
+
+void Auto::mostrarPalabra(){
+    //TODO
+}
+
+const char* Auto::getPalabra(){
+    //TODO
+    return "";
 }
 
 int16_t Auto::limitarRango(int16_t number){

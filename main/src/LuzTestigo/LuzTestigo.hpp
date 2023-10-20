@@ -25,11 +25,11 @@ class LuzTestigo{
         void aplicarEstado(){
             switch (this->estado){
                 case Modos::APAGADO:
-                    digitalWrite(this->PIN, HIGH);
+                    digitalWrite(this->PIN, LOW);
                     break;
                 case Modos::ENCENDIDO:
                     Serial.println("ENCENDIDOOO");
-                    digitalWrite(this->PIN, LOW);
+                    digitalWrite(this->PIN, HIGH);
                     break;
                 case Modos::TITILANDO:
                     this->titilar(1000);

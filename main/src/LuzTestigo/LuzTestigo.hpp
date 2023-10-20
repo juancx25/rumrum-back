@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include "Arduino.h"
 #include "../config/Modos.hpp"
-#include <HardwareSerial.h>
 
 class LuzTestigo{
     private:
@@ -28,7 +27,6 @@ class LuzTestigo{
                     digitalWrite(this->PIN, LOW);
                     break;
                 case Modos::ENCENDIDO:
-                    Serial.println("ENCENDIDOOO");
                     digitalWrite(this->PIN, HIGH);
                     break;
                 case Modos::TITILANDO:

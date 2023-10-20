@@ -95,6 +95,7 @@ void setup(){
   webServer->server->on("/code-min.js", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/code-min.js");
   });
+  webServer->server->serveStatic("/img/", SPIFFS, "/img/");
 }
 
 void loop() {

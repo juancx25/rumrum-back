@@ -10,7 +10,7 @@ WebServer::WebServer(uint32_t puerto){
 
 void WebServer::actualizarEstados(){
     if (this->webSocket->count() > 0){
-        this->luzPlaca->establecerEncendido(Modos::ENCENDIDO);
+        this->luzPlaca->establecerEncendido(Modos::APAGADO);
     } else {
         this->luzPlaca->establecerEncendido(Modos::TITILANDO);
     }

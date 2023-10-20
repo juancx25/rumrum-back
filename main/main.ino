@@ -1,8 +1,10 @@
 //Librerías requeridas
 #include <ESP8266WiFi.h>
 #include <FS.h>
+#include <WiFiClient.h>
 
 //Clases personalizadas
+#include "./src/Comunicacion/PaqueteRecibido.hpp"
 #include "./src/Auto/Auto.hpp"
 #include "./src/WebServer/WebServer.hpp"
 #include "./src/WifiConfig/WifiConfig.hpp"
@@ -11,7 +13,7 @@ void enEvento(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType
 void manejarMensajeRecibido(void *argumento, uint8_t *datos, size_t longitud);
 
 WifiConfig* wifiConfig = new WifiConfig("RUMRUM_AccessPoint", "rumrum");
-WebServer* webServer = new WebServer(80, enEvento);
+WebServer* webServer = new WebServer(80);
 Auto* autito = new Auto();
 
 void enEvento(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type,
@@ -37,28 +39,28 @@ void manejarMensajeRecibido(void *argumento, uint8_t *datos, size_t longitud){
   AwsFrameInfo *info = (AwsFrameInfo*)argumento;
   if (info->final && info->index == 0 && info->len == longitud && info->opcode == WS_TEXT) {
       datos[longitud] = 0;
-      char* payload = (char*) datos;
-
+      PaqueteRecibido* paquete = new PaqueteRecibido((char*) datos);
       
-
-      /* if (strcmp(payload, "Adelante") == 0){
-          Serial.println("Adelante");
+      switch (paquete->accion){
+        case Adelante:
           autito->automatico(Adelante);
-      } else if (strcmp(payload, "Frenar") == 0){
-          Serial.println("Frenar");
-          autito->frenar();
-      } else if (strcmp(payload, "Izquierda") == 0){
-          Serial.println("Izquierda");
-          autito->automatico(Izquierda);
-      } else if (strcmp(payload, "Derecha") == 0){
-          Serial.println("Derecha");
-          autito->automatico(Derecha);
-      } else if (strcmp(payload, "Atras") == 0){
-          Serial.println("Atras");
+          break;
+        case Atras:
           autito->automatico(Atras);
-      } */
-      //notifyClients();
-      Serial.println("DONE");
+          break;
+        case Izquierda:
+          autito->automatico(Izquierda);
+          break;
+        case Derecha:
+          autito->automatico(Derecha);
+          break;
+        case Frenar:
+          autito->frenar();
+          break;
+        case Manual:
+          autito->desplazar(paquete->parametros[0], paquete->parametros[1]);
+          break;
+      }
   }
 }
 
@@ -71,6 +73,7 @@ void setup(){
   Serial.println();
   Serial.print("Configurando punto de acceso...");
   WiFi.softAP(wifiConfig->SSID, wifiConfig->contrasena);
+  WiFi.printDiag(Serial);
 
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("Mi dirección IP: ");
@@ -82,7 +85,7 @@ void setup(){
     return;
   }
 
-  // Route for root / web page
+  webServer->webSocket->onEvent(enEvento);
   webServer->server->on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/index.html");
   });
@@ -96,5 +99,5 @@ void setup(){
 
 void loop() {
   autito->actualizarEstados();
-  webServer->limpiarClientes();
+  webServer->actualizarEstados();
 }

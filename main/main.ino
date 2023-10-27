@@ -12,7 +12,7 @@
 void enEvento(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len);
 void manejarMensajeRecibido(void *argumento, uint8_t *datos, size_t longitud);
 
-WifiConfig* wifiConfig = new WifiConfig("RUMRUM_AccessPoint", "rumrum");
+WifiConfig* wifiConfig = new WifiConfig("RUMRUM", "123456789");
 WebServer* webServer = new WebServer(80);
 Auto* autito = new Auto();
 

@@ -7,6 +7,7 @@
 #include "../Parlante/Parlante.hpp"
 #include "../config/config.hpp"
 #include "../config/Acciones.hpp"
+#include "../Display/Display.hpp"
 
 class Auto {
     private:
@@ -18,6 +19,7 @@ class Auto {
         LuzTestigo* luzAtras;
         Parlante* parlante;
         int16_t limitarRango(int16_t number);
+        Display* display;
 
     public:
         Auto();
@@ -25,9 +27,8 @@ class Auto {
         void desplazar(int16_t posX, int16_t posY);
         void frenar();
         void automatico(Acciones movimiento);
-        void establecerPalabra(char* palabra);
         const char* getPalabra();
-        void mostrarPalabra();
+        void mostrarPalabra(const String *palabra);
 };
 
 #endif

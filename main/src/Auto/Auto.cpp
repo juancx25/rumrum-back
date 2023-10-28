@@ -9,7 +9,8 @@ Auto::Auto(){
     this->parlante = new Parlante(Config::PIN_PARLANTE, 50);
     this->motorDerecho->potencia = 0;
     this->motorIzquierdo->potencia = 0;
-    //TODO: Set palabra
+    this->display = new Display();
+    this->display->MostrarPalabra(new String("HOLA"));
 }
 
 void Auto::actualizarEstados(){
@@ -59,12 +60,8 @@ void Auto::automatico(Acciones movimiento){
     }
 }
 
-void Auto::establecerPalabra(char* palabra){
-    //TODO
-}
-
-void Auto::mostrarPalabra(){
-    //TODO
+void Auto::mostrarPalabra(const String *palabra){
+    this->display->MostrarPalabra(palabra);
 }
 
 const char* Auto::getPalabra(){

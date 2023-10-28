@@ -17,6 +17,9 @@ class Config{
         static const uint8_t LED_ATRAS = 10;
 
         static const uint8_t PIN_PARLANTE = 15;
+
+        static const uint8_t PIN_CLK_DISPLAY = 1;
+        static const uint8_t PIN_DIO_DISPLAY = 3;
 };
 
 #endif

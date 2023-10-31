@@ -9,7 +9,7 @@
 class Display {
     private:
         TM1637TinyDisplay *display;
-        const uint8_t default_brightness = 7;
+        const uint8_t default_brightness = 2;
 
     public:
         Display();

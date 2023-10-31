@@ -20,6 +20,8 @@ class Config{
 
         static const uint8_t PIN_CLK_DISPLAY = 1;
         static const uint8_t PIN_DIO_DISPLAY = 3;
+        static constexpr const char* PALABRA_ADELANTE_DEFAULT = "HOLA";
+        static constexpr const char* PALABRA_ATRAS_DEFAULT = "CHAU";
 };
 
 #endif

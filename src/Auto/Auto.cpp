@@ -1,5 +1,6 @@
 #include "Auto.hpp"
 #include "../config/Modos.hpp"
+#include "../config/config.hpp"
 
 Auto::Auto(){
     this->motorIzquierdo = new Motor(Config::ENA, Config::IN1, Config::IN2);
@@ -10,8 +11,8 @@ Auto::Auto(){
     this->motorDerecho->potencia = 0;
     this->motorIzquierdo->potencia = 0;
     this->display = new Display();
-    this->palabraAdelante = new String("HOLA");
-    this->palabraAtras = new String("CHAU");
+    this->palabraAdelante = new String(Config::PALABRA_ADELANTE_DEFAULT);
+    this->palabraAtras = new String(Config::PALABRA_ATRAS_DEFAULT);
     this->display->MostrarPalabra(this->palabraAdelante);
 }
 

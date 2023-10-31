@@ -18,6 +18,6 @@ void Display::Apagar() {
 }
 
 void Display::MostrarPalabra(const String *palabra) {
-    this->display->showString(palabra->c_str());
+    palabra->isEmpty() ? this->display->clear() : this->display->showString(palabra->c_str());
 }
 

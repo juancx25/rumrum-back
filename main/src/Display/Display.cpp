@@ -6,6 +6,7 @@ Display::Display()
                                       Config::PIN_DIO_DISPLAY);
     this->display->setBrightness(default_brightness, true);
     this->display->setScrolldelay(800U);
+    this->display->flipDisplay();
 }
 
 void Display::Encender() {

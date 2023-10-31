@@ -10,7 +10,9 @@ Auto::Auto(){
     this->motorDerecho->potencia = 0;
     this->motorIzquierdo->potencia = 0;
     this->display = new Display();
-    this->display->MostrarPalabra(new String("HOLA"));
+    this->palabraAdelante = new String("HOLA");
+    this->palabraAtras = new String("CHAU");
+    this->display->MostrarPalabra(this->palabraAdelante);
 }
 
 void Auto::actualizarEstados(){
@@ -28,14 +30,17 @@ void Auto::desplazar(int16_t posX, int16_t posY){
         this->luzAdelante->establecerEncendido(Modos::ENCENDIDO);
         this->luzAtras->establecerEncendido(Modos::APAGADO);
         this->parlante->establecerEncendido(Modos::APAGADO);
+        this->display->MostrarPalabra(this->palabraAdelante);
     } else if (posY < 0){
         this->luzAdelante->establecerEncendido(Modos::APAGADO);
         this->luzAtras->establecerEncendido(Modos::ENCENDIDO);
         this->parlante->establecerEncendido(Modos::TITILANDO);
+        this->display->MostrarPalabra(this->palabraAtras);
     } else {
         this->luzAdelante->establecerEncendido(Modos::APAGADO);
         this->luzAtras->establecerEncendido(Modos::APAGADO);
         this->parlante->establecerEncendido(Modos::APAGADO);
+        this->mostrarPalabra(new String());
     }
 }
 

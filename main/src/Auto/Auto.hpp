@@ -20,6 +20,8 @@ class Auto {
         Parlante* parlante;
         int16_t limitarRango(int16_t number);
         Display* display;
+        const String* palabraAdelante;
+        const String* palabraAtras;
 
     public:
         Auto();

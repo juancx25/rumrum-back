@@ -31,7 +31,7 @@ class Parlante{
                     digitalWrite(this->PIN, HIGH);
                     break;
                 case Modos::TITILANDO:
-                    this->titilar(1000);
+                    this->titilar(500);
             }
         }
         void titilar(uint16_t tiempo_ms){

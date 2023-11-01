@@ -7,7 +7,11 @@ enum Acciones {
     Izquierda,
     Derecha,
     Frenar,
-    Manual
+    Manual,
+    EncenderDisplay,
+    ApagarDisplay,
+    PalabraManual,  
+    PalabraAutomatica
 };
 
 #endif

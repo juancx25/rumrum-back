@@ -41,7 +41,7 @@ void Auto::desplazar(int16_t posX, int16_t posY){
         this->luzAdelante->establecerEncendido(Modos::APAGADO);
         this->luzAtras->establecerEncendido(Modos::APAGADO);
         this->parlante->establecerEncendido(Modos::APAGADO);
-        this->mostrarPalabra(new String());
+        this->mostrarPalabra(this->palabraAdelante);
     }
 }
 
@@ -66,7 +66,7 @@ void Auto::automatico(Acciones movimiento){
     }
 }
 
-void Auto::mostrarPalabra(const String *palabra){
+void Auto::mostrarPalabra(const String* palabra){
     this->display->MostrarPalabra(palabra);
 }
 
@@ -83,4 +83,20 @@ int16_t Auto::limitarRango(int16_t number){
     } else {
         return number;
     }
+}
+
+void Auto::encenderDisplay(){
+    this->display->Encender();
+}
+
+void Auto::apagarDisplay(){
+    this->display->Apagar();
+}
+
+void Auto::setPalabraAdelante(const String* palabra){
+    this->palabraAdelante = palabra;
+}
+
+void Auto::setPalabraAtras(const String* palabra){
+    this->palabraAtras = palabra;
 }

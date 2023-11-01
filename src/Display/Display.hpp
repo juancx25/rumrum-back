@@ -9,13 +9,15 @@
 class Display {
     private:
         TM1637TinyDisplay *display;
+        bool encendido;
         const uint8_t default_brightness = 2;
 
     public:
-        Display();
+        Display(bool encendido = true);
         void Encender();
         void Apagar();
-        void MostrarPalabra(const String *palabra);
+        void MostrarPalabra(const String* palabra);
+        bool estaEncendido();
 };
 
 #endif

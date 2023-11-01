@@ -2,6 +2,7 @@
 #define AUTO
 
 #include <cmath>
+#include <string>
 #include "../Motor/Motor.hpp"
 #include "../LuzTestigo/LuzTestigo.hpp"
 #include "../Parlante/Parlante.hpp"
@@ -30,7 +31,11 @@ class Auto {
         void frenar();
         void automatico(Acciones movimiento);
         const char* getPalabra();
-        void mostrarPalabra(const String *palabra);
+        void mostrarPalabra(const String* palabra);
+        void encenderDisplay();
+        void apagarDisplay();
+        void setPalabraAdelante(const String* palabra);
+        void setPalabraAtras(const String* palabra);
 };
 
 #endif

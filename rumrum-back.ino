@@ -45,7 +45,7 @@ void manejarMensajeRecibido(void *argumento, uint8_t *datos, size_t longitud){
         case Adelante:
           autito->automatico(Adelante);
           break;
-        case Atras:
+        case Atras: 
           autito->automatico(Atras);
           break;
         case Izquierda:
@@ -60,6 +60,16 @@ void manejarMensajeRecibido(void *argumento, uint8_t *datos, size_t longitud){
         case Manual:
           autito->desplazar(paquete->parametros[0], paquete->parametros[1]);
           break;
+        case EncenderDisplay:
+          autito->encenderDisplay();
+          break;
+        case ApagarDisplay:
+          autito->apagarDisplay();
+        case PalabraManual:
+          autito->setPalabraAdelante(paquete->palabra);
+          autito->setPalabraAtras(paquete->palabra);
+          break;
+      
       }
   }
 }

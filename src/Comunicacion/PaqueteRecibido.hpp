@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <sstream>
+#include <string>
 #include <HardwareSerial.h>
 
 #include "../config/Acciones.hpp"
@@ -11,7 +12,7 @@ class PaqueteRecibido{
     public:
         Acciones accion;
         std::vector<int16_t> parametros;
-        
+        String* palabra;
         PaqueteRecibido(char* payload);
 };
 

@@ -5,11 +5,22 @@ PaqueteRecibido::PaqueteRecibido(char* payload){
     std::vector<int16_t> result;
     char ch;
     int tmp;
-    while(ss >> tmp) {
-        result.push_back(tmp);
-        ss >> ch;
+    ss >> ch;
+    this->accion = static_cast<Acciones>(ch - '0');
+    ss >> ch;
+    switch (this->accion){
+        case Manual:
+            while(ss >> tmp) {
+                result.push_back(tmp);
+                ss >> ch;
+            }
+            break;
+        case PalabraManual:
+            Serial.println(payload+2);
+            this->palabra = new String(payload+2);
+        default:
+            break;
     }
-    this->accion = static_cast<Acciones>(result.at(0));
-    result.erase(result.begin());
+    
     this->parametros = result;
 }

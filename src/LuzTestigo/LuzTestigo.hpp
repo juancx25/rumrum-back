@@ -2,7 +2,7 @@
 #define LUZ_TESTIGO
 
 #include <stdint.h>
-#include "Arduino.h"
+#include <Arduino.h>
 #include "../config/Modos.hpp"
 
 class LuzTestigo{

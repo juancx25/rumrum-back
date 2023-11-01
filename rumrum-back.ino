@@ -25,6 +25,7 @@ void enEvento(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType
           break;
       case WS_EVT_DISCONNECT:
           Serial.printf("WebSocket client #%u disconnected\n", client->id());
+          autito->frenar();
           break;
       case WS_EVT_DATA:
           manejarMensajeRecibido(arg, data, len);

@@ -23,6 +23,8 @@ class Auto {
         Display* display;
         const String* palabraAdelante;
         const String* palabraAtras;
+        bool mostrandoPalabraAutomatica;
+        const String* palabraUsuario;
 
     public:
         Auto();
@@ -34,8 +36,7 @@ class Auto {
         void mostrarPalabra(const String* palabra);
         void encenderDisplay();
         void apagarDisplay();
-        void setPalabraAdelante(const String* palabra);
-        void setPalabraAtras(const String* palabra);
+        void activarPalabraAutomatica();
 };
 
 #endif

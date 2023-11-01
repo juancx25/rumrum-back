@@ -14,6 +14,7 @@ Auto::Auto(){
     this->palabraAdelante = new String(Config::PALABRA_ADELANTE_DEFAULT);
     this->palabraAtras = new String(Config::PALABRA_ATRAS_DEFAULT);
     this->display->MostrarPalabra(this->palabraAdelante);
+    this->mostrandoPalabraAutomatica = true;
 }
 
 void Auto::actualizarEstados(){
@@ -31,22 +32,24 @@ void Auto::desplazar(int16_t posX, int16_t posY){
         this->luzAdelante->establecerEncendido(Modos::ENCENDIDO);
         this->luzAtras->establecerEncendido(Modos::APAGADO);
         this->parlante->establecerEncendido(Modos::APAGADO);
-        this->display->MostrarPalabra(this->palabraAdelante);
+
+        if (this->mostrandoPalabraAutomatica) this->display->MostrarPalabra(this->palabraAdelante);
     } else if (posY < 0){
         this->luzAdelante->establecerEncendido(Modos::APAGADO);
         this->luzAtras->establecerEncendido(Modos::ENCENDIDO);
         this->parlante->establecerEncendido(Modos::TITILANDO);
-        this->display->MostrarPalabra(this->palabraAtras);
+
+        if (this->mostrandoPalabraAutomatica) this->display->MostrarPalabra(this->palabraAtras);
     } else {
         this->luzAdelante->establecerEncendido(Modos::APAGADO);
         this->luzAtras->establecerEncendido(Modos::APAGADO);
         this->parlante->establecerEncendido(Modos::APAGADO);
-        this->mostrarPalabra(this->palabraAdelante);
     }
 }
 
 void Auto::frenar(){
     this->desplazar(0, 0);
+    if (this->mostrandoPalabraAutomatica) this->display->MostrarPalabra(this->palabraAdelante);
 }
 
 void Auto::automatico(Acciones movimiento){
@@ -67,7 +70,9 @@ void Auto::automatico(Acciones movimiento){
 }
 
 void Auto::mostrarPalabra(const String* palabra){
-    this->display->MostrarPalabra(palabra);
+    this->palabraUsuario = palabra;
+    this->mostrandoPalabraAutomatica = false;
+    this->display->MostrarPalabra(this->palabraUsuario);
 }
 
 const char* Auto::getPalabra(){
@@ -87,16 +92,19 @@ int16_t Auto::limitarRango(int16_t number){
 
 void Auto::encenderDisplay(){
     this->display->Encender();
+
+    if (this->mostrandoPalabraAutomatica) {
+        this->display->MostrarPalabra(this->palabraAdelante);
+    } else {
+        this->display->MostrarPalabra(this->palabraUsuario);
+    }
 }
 
 void Auto::apagarDisplay(){
     this->display->Apagar();
 }
 
-void Auto::setPalabraAdelante(const String* palabra){
-    this->palabraAdelante = palabra;
-}
-
-void Auto::setPalabraAtras(const String* palabra){
-    this->palabraAtras = palabra;
+void Auto::activarPalabraAutomatica() {
+    this->mostrandoPalabraAutomatica = true;
+    this->display->MostrarPalabra(this->palabraAdelante);
 }

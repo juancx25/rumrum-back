@@ -65,6 +65,7 @@ void manejarMensajeRecibido(void *argumento, uint8_t *datos, size_t longitud){
           break;
         case ApagarDisplay:
           autito->apagarDisplay();
+          break;
         case PalabraManual:
           autito->setPalabraAdelante(paquete->palabra);
           autito->setPalabraAtras(paquete->palabra);

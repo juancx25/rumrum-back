@@ -55,16 +55,16 @@ void Auto::frenar(){
 void Auto::automatico(Acciones movimiento){
     switch(movimiento){
         case Adelante:
-            this->desplazar(0, 255);
+            this->desplazar(0, MAX_POTENCIA);
             break;
         case Atras:
-            this->desplazar(0, -255);
+            this->desplazar(0, -MAX_POTENCIA);
             break;
         case Derecha:
-            this->desplazar(255, 0);
+            this->desplazar(MAX_POTENCIA, 0);
             break;
         case Izquierda:
-            this->desplazar(-255, 0);
+            this->desplazar(-MAX_POTENCIA, 0);
             break;
     }
 }
@@ -81,10 +81,10 @@ const char* Auto::getPalabra(){
 }
 
 int16_t Auto::limitarRango(int16_t number){
-    if (number > 255){
-        return 255;
-    } else if (number < -255){
-        return -255;
+    if (number > MAX_POTENCIA){
+        return MAX_POTENCIA;
+    } else if (number < -MAX_POTENCIA){
+        return -MAX_POTENCIA;
     } else {
         return number;
     }

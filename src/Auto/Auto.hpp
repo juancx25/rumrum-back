@@ -13,6 +13,7 @@
 class Auto {
     private:
         static const uint8_t MAX_LONGITUD_PALABRA = 4;
+        static const uint8_t MAX_POTENCIA = 100;
         Motor* motorDerecho;
         Motor* motorIzquierdo;
         char palabraDisplay[4];

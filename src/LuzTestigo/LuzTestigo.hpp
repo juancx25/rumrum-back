@@ -1,53 +1,57 @@
 #ifndef LUZ_TESTIGO
 #define LUZ_TESTIGO
 
-#include <stdint.h>
-#include <Arduino.h>
 #include "../config/Modos.hpp"
+#include <Arduino.h>
+#include <stdint.h>
 
-class LuzTestigo{
-    private:
-        uint8_t PIN;
-        Modos estado;
-    public:
-        LuzTestigo(uint8_t PIN, Modos estado = Modos::APAGADO){
-            this->PIN = PIN;
-            this->estado = estado;
-            pinMode (this->PIN, OUTPUT);
-        }
-        void establecerEncendido(Modos estado){
-            this->estado = estado;
-        }
-        bool estaEncendido(){
-            return this->estado;
-        }
-        void aplicarEstado(){
-            switch (this->estado){
-                case Modos::APAGADO:
-                    digitalWrite(this->PIN, LOW);
-                    break;
-                case Modos::ENCENDIDO:
-                    digitalWrite(this->PIN, HIGH);
-                    break;
-                case Modos::TITILANDO:
-                    this->titilar(1000);
-            }
-        }
-        void titilar(uint16_t tiempo_ms){
-            static unsigned long time = 0;
-            static bool encendido = false;
-            if(millis() >= time+tiempo_ms){
-                time += tiempo_ms;
-                encendido = !encendido;
-                if (encendido && this->estaEncendido()){
-                    digitalWrite(this->PIN, HIGH);
-                } else {
-                    digitalWrite(this->PIN, LOW);
-                }
-            } else if (!this->estaEncendido()){
-                digitalWrite(this->PIN, LOW);
-            }  
-        }
+/**
+ * @file LuzTestigo.hpp
+ * @brief Declaración de la clase LuzTestigo.
+ */
+
+/**
+ * @class LuzTestigo
+ * @brief Clase que representa una luz de testigo con diferentes modos
+ * de funcionamiento.
+ */
+class LuzTestigo
+{
+private:
+    uint8_t PIN;  ///< Pin al que está conectada la luz de testigo.
+    Modos estado; ///< Estado actual de la luz de testigo.
+
+public:
+    /**
+     * @brief Constructor de la clase LuzTestigo.
+     * @param PIN Pin al que está conectada la luz de testigo.
+     * @param estado Estado inicial de la luz de testigo (por defecto,
+     * Modos::APAGADO).
+     */
+    LuzTestigo(uint8_t PIN, Modos estado = Modos::APAGADO);
+
+    /**
+     * @brief Establece el estado de encendido para la luz de testigo.
+     * @param estado Nuevo estado de la luz de testigo.
+     */
+    void establecerEncendido(Modos estado);
+
+    /**
+     * @brief Verifica si la luz de testigo está encendida.
+     * @return true si la luz de testigo está encendida, false de lo contrario.
+     */
+    bool estaEncendido();
+
+    /**
+     * @brief Aplica el estado actual de la luz de testigo.
+     */
+    void aplicarEstado();
+
+    /**
+     * @brief Hace titilar la luz de testigo durante un tiempo especificado.
+     * @param tiempo_ms Tiempo en milisegundos durante el cual la luz titilará.
+     */
+    void titilar(uint16_t tiempo_ms);
 };
 
 #endif

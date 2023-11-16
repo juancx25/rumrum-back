@@ -90,12 +90,6 @@ void Auto::mostrarPalabra(const String *palabra)
     this->display->MostrarPalabra(this->palabraUsuario);
 }
 
-const char *Auto::getPalabra()
-{
-    // TODO
-    return "";
-}
-
 int16_t Auto::limitarRango(int16_t number)
 {
     if (number > MAX_POTENCIA)

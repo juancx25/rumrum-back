@@ -69,13 +69,6 @@ public:
     void automatico(Acciones movimiento);
 
     /**
-     * @brief Obtiene la palabra actual del display.
-     * @return Puntero a la cadena de caracteres que representa la
-     * palabra actual.
-     */
-    const char *getPalabra();
-
-    /**
      * @brief Muestra una palabra en el display.
      * @param palabra Puntero a la cadena de caracteres que representa la palabra a mostrar.
      */

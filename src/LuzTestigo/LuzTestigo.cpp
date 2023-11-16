@@ -1,6 +1,6 @@
 #include "LuzTestigo.hpp"
 
-LuzTestigo::LuzTestigo(uint8_t PIN, Modos estado = Modos::APAGADO)
+LuzTestigo::LuzTestigo(uint8_t PIN, Modos estado)
 {
     this->PIN = PIN;
     this->estado = estado;

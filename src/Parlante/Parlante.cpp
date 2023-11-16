@@ -1,6 +1,6 @@
 #include "Parlante.hpp"
 
-Parlante::Parlante(uint8_t PIN, uint16_t frecuencia, Modos estado = Modos::APAGADO)
+Parlante::Parlante(uint8_t PIN, uint16_t frecuencia, Modos estado)
 {
     this->PIN = PIN;
     this->frecuencia = frecuencia;
@@ -23,10 +23,10 @@ void Parlante::aplicarEstado()
     switch (this->estado)
     {
     case Modos::APAGADO:
-        digitalWrite(this->PIN, LOW);
+        analogWrite(this->PIN, 0);
         break;
     case Modos::ENCENDIDO:
-        digitalWrite(this->PIN, HIGH);
+        analogWrite(this->PIN, this->frecuencia);
         break;
     case Modos::TITILANDO:
         this->titilar(500);

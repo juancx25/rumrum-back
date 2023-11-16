@@ -3,6 +3,7 @@
 
 #include "../config/Modos.hpp"
 #include <HardwareSerial.h>
+#include <Arduino.h>
 
 /**
  * @file Parlante.hpp
